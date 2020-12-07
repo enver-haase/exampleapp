@@ -7,8 +7,6 @@ import org.vaadin.app.pageobjects.ExampleAppTabsElement;
 import org.vaadin.app.pageobjects.KeypadElement;
 import org.vaadin.app.pageobjects.LogElement;
 
-import java.util.NoSuchElementException;
-
 import static org.junit.Assert.*;
 
 /**
@@ -55,8 +53,7 @@ public class CalcViewIT extends AbstractIT {
         commentWindow.ok();
 
         // Ensure the comment window is closed and the log row was added
-        //assertFalse(commentWindow.isOpen()); // https://github.com/vaadin/vaadin-flow-components/issues/500
-        Assert.assertThrows(org.openqa.selenium.NoSuchElementException.class, commentWindow::isOpen);
+        assertFalse(commentWindow.isOpen());
         Assert.assertEquals("[ " + comment + " ]", getLog().getRow(0));
     }
 
@@ -71,9 +68,7 @@ public class CalcViewIT extends AbstractIT {
         commentWindow.cancel();
 
         // Ensure the comment window is closed and the log row was not added
-        //assertFalse(commentWindow.isOpen()); // https://github.com/vaadin/vaadin-flow-components/issues/500
-        Assert.assertThrows(org.openqa.selenium.NoSuchElementException.class, commentWindow::isOpen);
-
+        assertFalse(commentWindow.isOpen());
         Assert.assertEquals("1.0 + 1.0 = 2.0", getLog().getRow(0));
     }
 

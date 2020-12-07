@@ -4,6 +4,9 @@ import com.vaadin.flow.component.button.testbench.ButtonElement;
 import com.vaadin.flow.component.dialog.testbench.DialogElement;
 import com.vaadin.flow.component.orderedlayout.testbench.VerticalLayoutElement;
 import com.vaadin.flow.component.textfield.testbench.TextFieldElement;
+import org.junit.Assert;
+
+import java.util.NoSuchElementException;
 
 public class CommentWindowElement extends DialogElement {
 
@@ -34,5 +37,19 @@ public class CommentWindowElement extends DialogElement {
      */
     public void cancel() {
         $(VerticalLayoutElement.class).first().$(ButtonElement.class).id("cancel").click();
+    }
+
+    @Override
+    public boolean isOpen(){
+        boolean open;
+        try{
+            open = super.isOpen();
+        }
+        // see https://github.com/vaadin/vaadin-flow-components/issues/500
+        // this code should keep working even when above gets fixed eventually
+        catch (org.openqa.selenium.NoSuchElementException ignored){
+            open = false;
+        }
+        return open;
     }
 }
