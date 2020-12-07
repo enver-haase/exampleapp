@@ -20,6 +20,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
+import org.vaadin.app.views.calculator.CalcView;
 import org.vaadin.app.views.main.MainView;
 import org.vaadin.app.views.helloworld.HelloWorldView;
 import org.vaadin.app.views.about.AboutView;
@@ -82,7 +83,7 @@ public class MainView extends AppLayout {
     }
 
     private Component[] createMenuItems() {
-        return new Tab[]{createTab("Hello World", HelloWorldView.class), createTab("About", AboutView.class)};
+        return new Tab[]{createTab("Hello World", HelloWorldView.class), createTab("About", AboutView.class), createTab("Calculator", CalcView.class)};
     }
 
     private static Tab createTab(String text, Class<? extends Component> navigationTarget) {
