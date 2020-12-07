@@ -1,7 +1,6 @@
 package org.vaadin.app;
 
 import com.vaadin.testbench.TestBench;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -63,22 +62,16 @@ public class WebDriverFactory {
 
   public WebDriver createDriver() {
     if (webDriverName.equalsIgnoreCase("chrome")) {
-      WebDriverManager.chromedriver().setup();
       return TestBench.createDriver(new ChromeDriver());
     } else if (webDriverName.equalsIgnoreCase("firefox")) {
-      WebDriverManager.firefoxdriver().setup();
       return TestBench.createDriver(new FirefoxDriver());
     } else if (webDriverName.equalsIgnoreCase("edge")) {
-      WebDriverManager.edgedriver().setup();
       return TestBench.createDriver(new EdgeDriver());
     } else if (webDriverName.equalsIgnoreCase("opera")) {
-      WebDriverManager.operadriver().setup();
       return TestBench.createDriver(new OperaDriver());
     } else if (webDriverName.equalsIgnoreCase("internetexplorer")) {
-      WebDriverManager.iedriver().setup();
       return TestBench.createDriver(new InternetExplorerDriver());
     } else if (webDriverName.equalsIgnoreCase("safari")) {
-      WebDriverManager.getInstance(SafariDriver.class).setup();
       return TestBench.createDriver(new SafariDriver());
     }
     throw new IllegalArgumentException(
